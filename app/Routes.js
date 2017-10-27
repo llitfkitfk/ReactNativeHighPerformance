@@ -16,11 +16,13 @@ import {
     Stack,
     Lightbox,
 } from "react-native-router-flux";
-import HomeView from "./HomeView";
-import AppEventEmitter from "../common/AppEventEmitter";
-import Constants from "../common/Constants";
+import HomeView from "./containers/HomeView";
+import DrawerContent from "./components/DrawerContent"
+import AppEventEmitter from "./common/AppEventEmitter";
+import Constants from "./common/Constants";
+import MenuIcon from './images/menu_burger.png';
 
-class App extends React.Component {
+class Routes extends React.Component {
 
 
     componentDidMount() {
@@ -39,7 +41,16 @@ class App extends React.Component {
                 <StatusBar barStyle="dark-content" />
                 <Router>
                     <Stack key="root">
-                        <Scene key="home" component={HomeView} />
+                        <Scene key="home" hideNavBar component={HomeView} />
+                        <Drawer
+                            hideNavBar
+                            key="drawer"
+                            contentComponent={DrawerContent}
+                            drawerImage={MenuIcon}>
+                            <Scene hideNavBar>
+                                
+                            </Scene>
+                        </Drawer>
                     </Stack>
                 </Router>
             </View>
@@ -47,4 +58,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default Routes;
